@@ -8,16 +8,12 @@
 {{-- icon bootstrap --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
 {{-- favicon --}}
-<link rel="icon" href="{{ asset('assets') }}/img/laundry.png">
+<link rel="icon" href="{{ asset('assets') }}/img/logo.png">
 {{-- SweetAlert2 --}}
 <link rel="stylesheet" href="{{ asset('assets') }}/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <link rel="stylesheet" href="{{ asset('assets') }}/plugins/toastr/toastr.css">
-<!-- Datatable -->
-{{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css"> --}}
-{{-- <link rel="stylesheet" href="/assets/plugins/datatables-bs4/css/datatables.min.css"> --}}
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('assets') }}/dist/css/adminlte.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 
 <title>Iraphillia | Site</title>
 
@@ -27,6 +23,8 @@
 <link rel="stylesheet" href="{{ asset('assets') }}/plugins/fontawesome-free/css/all.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('assets') }}/dist/css/adminlte.min.css">
+<!-- Datatable -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.css"/>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -37,11 +35,10 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a href="{{ route("login.index") }}" class="nav-link">
-        <p>
-          Login
-        </p>
-      </a>
+      <form action="/logout" method="post">
+        @csrf
+        <button type="submit" class="dropdown-item">Logout</button>
+      </form>
     </li>
     </ul>
 </nav>
@@ -68,37 +65,15 @@
     </div>
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    About
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview" style="display: none;">
-                  <li class="nav-item">
-                    <a href="{{ route("member.index") }}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Member</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route("paket.index") }}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Paket</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route("outlet.index") }}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Outlet</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-        </ul>
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          @if(auth()->user()->role == 'admin')
+            @include('templates.admin')
+          @elseif(auth()->user()->role == 'kasir')
+            @include('templates.kasir')
+          @elseif(auth()->user()->role == 'owner')
+            @include('templates.owner')
+          @endif
+    </ul>
     </nav>
     <!-- /.sidebar-menu -->
     </div>

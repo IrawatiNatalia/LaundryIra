@@ -116,7 +116,11 @@
                   <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $item->alamat }}" required>
 
                   <label for="jenis_kelamin">Jenis Kelamin</label>
-                  <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" value="{{ $item->jenis_kelamin }}" required>
+                  <select class="custom-select" name="jenis_kelamin" id="jenis_kelamin" value="{{ $item->jenis_kelamin }}">
+                    <option value="L">L</option>
+                    <option value="P">P</option>
+                  </select>
+                  {{-- <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" value="{{ $item->jenis_kelamin }}" required> --}}
 
                   <label for="tlp">Telepon</label>
                   <input type="text" class="form-control" id="tlp" name="tlp" value="{{ $item->tlp }}" required>

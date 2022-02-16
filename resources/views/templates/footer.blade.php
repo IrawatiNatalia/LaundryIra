@@ -22,20 +22,16 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets') }}/dist/js/adminlte.js"></script>
-{{-- <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script> --}}
-{{-- Datatable --}}
-<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.js"></script>
 <script>
   $(document).ready( function () {
     $('#tableOutlet').DataTable({
       "aLengthMenu": [[5,10,15,20], [5, 10, 15, 20]]
-    });
+    }); 
     $('#tablePaket').DataTable({
       "aLengthMenu": [[5,10,15,20], [5, 10, 15, 20]]
     });
-    $('#tableMember').DataTable({
-      "aLengthMenu": [[5,10,15,20], [5, 10, 15, 20]]
-    });
+    $('#tableMember').DataTable();
     $('#table_id').DataTable();
 } );
 </script>

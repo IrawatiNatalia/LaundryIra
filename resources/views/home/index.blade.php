@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Blank Page</h1>
+                <h1>About IraLaundry</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -35,7 +35,19 @@
                 </div>
             </div>
             <div class="card-body">
-            
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <img src="{{ asset('assets') }}/img/bg1.jpg" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{ asset('assets') }}/img/bg2.jpg" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{ asset('assets') }}/img/bg3.jpg" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                  </div>               
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
