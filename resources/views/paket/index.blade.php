@@ -1,7 +1,5 @@
 @extends('templates/header')
-
 @section('content')
-
   <div style="">
   <h3 class="mb-2">Paket</h3>
 
@@ -23,7 +21,7 @@
                 <?php
                   $no = 1;
                   ?>
-                  @foreach ($data as $item)
+                  @foreach ($paket as $item)
                 <tr>
                     <td scope="row">{{ $no++ }}</td>
                     <td>{{ $item->id_outlet }}</td>
@@ -63,12 +61,19 @@
           <form action="{{ ('paket') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-2">
-              <label>Id Outlet</label>
-              <input type="text" class="form-control" name="id_outlet" id="id_outlet" required>
+              <input type="hidden" class="form-control" id="id" name="id">      
             </div>
-            <div class="mb-2">
-              <label>Jenis</label>
-              <select name="jenis" id="jenis">
+            <div class="form-group mb-2">
+              <label for="id_outlet">Id Outlet</label>
+              <select name="id_outlet" id="id_outlet" class="form-control">
+                @foreach ($outlet as $item)
+                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-floating mb-2">
+              <label for="jenis">Jenis</label>
+              <select name="jenis" id="jenis" class="form-select">
                 <option value="kiloan">Kiloan</option>
                 <option value="selimut">Selimut</option>
                 <option value="bed_cover">Bed Cover</option>
@@ -97,24 +102,37 @@
   </div>
 
   {{-- modal update --}}
-  @foreach ($data as $item)
+  @foreach ($paket as $item)
     <div class="modal fade" id="exampleModalUpdate{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
               <h4 class="modal-title fw-normal" id="exampleModalUpdate">Update data Paket</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&nbsp;</span>
+              </button>
           </div>
           <div class="modal-body">
               <form method="post" action="{{ route('paket.update', $item->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
+                <div class="form-floating">
                 <label for="id_outlet">Id Outlet</label>
-                  <input type="text" class="form-control" id="id_outlet" name="id_outlet" value="{{ $item->id_outlet }}" required>
-                <input type="hidden" name="id" value="{{ $item->id }}">
-                  <div class="mb-2">
-                  <label for="jenis">Jenis</label>
-                  <input type="text" class="form-control" id="jenis" name="jenis" value="{{ $item->jenis }}" required>
+                <select class="form-select" id="id_outlet" name="id_outet">
+                @foreach ($outlet as $item)
+                  <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                  @endforeach
+                </select>
+                </div>
+                  <div class="form-floating">
+                      <label for="jenis">Jenis</label>
+                      <select class="form-control select2bs4 select2-hidden-accessible" id="jenis" name="jenis" tabindex="-1">
+                        <option value="kiloan">Kiloan</option>
+                        <option value="selimut">Selimut</option>
+                        <option value="bed_cover">Bed Cover</option>
+                        <option value="lain">Lain..</option>
+                      </select>
+                  </div>
 
                   <label for="nama_paket">Nama Paket</label>
                   <input type="text" class="form-control" id="nama_paket" name="nama_paket" value="{{ $item->nama_paket }}" required>

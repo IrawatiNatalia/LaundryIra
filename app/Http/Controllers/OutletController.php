@@ -95,6 +95,6 @@ class OutletController extends Controller
     {
         $data = outlet::find($id);
         $data->delete();
-        return redirect('/outlet')->with('delete','Paket Berhasil Ditambahkan');
+        return redirect('/outlet')->with('delete','Paket Berhasil Dihapus');
     }
 }

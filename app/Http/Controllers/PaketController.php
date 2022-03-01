@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\paket;
+use App\Models\Paket;
+use App\Models\outlet;
 use Illuminate\Http\Request;
 
 class PaketController extends Controller
@@ -14,8 +15,13 @@ class PaketController extends Controller
      */
     public function index()
     {
-        $data = paket::all();
-        return view('paket.index', compact('data'));
+        $paket = Paket::all();
+        $outlet = Outlet::all();
+        return view('paket.index', [
+            "title" => "data",
+            "paket" => $paket,
+            "outlet" => $outlet,
+        ]);
     }
 
     /**
@@ -93,6 +99,6 @@ class PaketController extends Controller
     {
         $data = paket::find($id);
         $data->delete();
-        return redirect('/paket')->with('delete','Paket Berhasil Ditambahkan');
+        return redirect('/paket')->with('delete','Paket Berhasil Dihapus');
     }
 }

@@ -1,12 +1,4 @@
-<br>
-<footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0-rc
-    </div>
 
-  </footer>
   
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -22,6 +14,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets') }}/dist/js/adminlte.js"></script>
+{{-- data table --}}
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.js"></script>
 <script>
   $(document).ready( function () {
@@ -31,10 +24,14 @@
     $('#tablePaket').DataTable({
       "aLengthMenu": [[5,10,15,20], [5, 10, 15, 20]]
     });
-    $('#tableMember').DataTable();
-    $('#table_id').DataTable();
+    $('#tableMember').DataTable({
+      "aLengthMenu": [[5,10,15,20], [5, 10, 15, 20]]
+    });
+    $('#tableBarang').DataTable({
+      "aLengthMenu": [[5,10,15,20], [5, 10, 15, 20]]
+    });
 } );
 </script>
-@stack('script')
+@stack('scripts')
 </body>
 </html>

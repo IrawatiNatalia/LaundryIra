@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\member;
 use Illuminate\Http\Request;
+use App\Exports\MemberExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MemberController extends Controller
 {
@@ -93,6 +95,10 @@ class MemberController extends Controller
     {
         $data = member::find($id);
         $data->delete();
-        return redirect('/member')->with('delete','Paket Berhasil Ditambahkan');
+        return redirect('/member')->with('delete','Paket Berhasil Dihapus');
+    }
+
+    public function exportToExcel(){
+        return Excel::download(new MemberExport, 'member.xlsx');
     }
 }

@@ -18,7 +18,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        return view('transaksi.index');
+        $data['member'] = Member::get();
+        $data['paket'] = Paket::where('id_outlet', auth()->user()->id_outlet)->get();
+        return view('transaksi.index')->with($data);
     }
 
     /**

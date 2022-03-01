@@ -14,21 +14,27 @@
         </a>
         </li>
         <li class="nav-item">
+        <a href="{{ route("outlet.index") }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Outlet</p>
+        </a>
+        </li>
+        <li class="nav-item">
         <a href="{{ route("paket.index") }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Paket</p>
         </a>
         </li>
         <li class="nav-item">
-        <a href="{{ route("outlet.index") }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Outlet</p>
-        </a>
+            <a href="{{ route("barangInventaris.index") }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Barang Inventaris</p>
+            </a>
         </li>
     </ul>
 </li>
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="{{ route("transaksi.index") }}" class="nav-link">
         <i class="nav-icon bi bi-cash-coin"></i>
         <p>
         Transaksi
